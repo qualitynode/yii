@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\EntryForm;
 
 class SiteController extends Controller
 {
@@ -94,5 +95,16 @@ class SiteController extends Controller
     
     public function actionSay($message='Hello') {
         return $this->render('say', ['message' => $message]);
+    }
+
+    //用于EntryForm模型的操作
+    public function actionEntry() {
+        $model = new EntryForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {   //Yii::$app->request->post()获取用户提交的数据
+            return $this->render('entry-confirm', ['model' => $model]);
+        } else {
+            return $this->render('entry', ['model' => $model]);
+        }
     }
 }

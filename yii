@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
+ * 控制台入口脚本
  * Yii console bootstrap file.
  *
  * @link http://www.yiiframework.com/
@@ -11,11 +12,15 @@
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
+//注册composer自动加载器
 require(__DIR__ . '/vendor/autoload.php');
+//包含Yii文件
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
+//加载配置文件
 $config = require(__DIR__ . '/config/console.php');
 
+//创建、配置、运行一个应用
 $application = new yii\console\Application($config);
 $exitCode = $application->run();
 exit($exitCode);

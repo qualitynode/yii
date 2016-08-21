@@ -9,8 +9,8 @@
  * @license http://www.yiiframework.com/license/
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG', true);
-defined('YII_ENV') or define('YII_ENV', 'dev');
+defined('YII_DEBUG') or define('YII_DEBUG', true);      //标识应用运行在调试模式之下
+defined('YII_ENV') or define('YII_ENV', 'dev');     //标识应用的运行环境为开发环境
 
 //注册composer自动加载器
 require(__DIR__ . '/vendor/autoload.php');
@@ -20,7 +20,7 @@ require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 //加载配置文件
 $config = require(__DIR__ . '/config/console.php');
 
-//创建、配置、运行一个应用
+//创建、配置、运行一个应用主体，可以通过\Yii::$app在全局范围内访问，主要处理控制台请求
 $application = new yii\console\Application($config);
 $exitCode = $application->run();
 exit($exitCode);

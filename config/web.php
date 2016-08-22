@@ -9,7 +9,7 @@ $config = [
     'components' => [       //允许注册多个在其他地方使用的组件
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            //插入一个密钥在下面那一行（如果为空），被cookie缓存调用
+            //插入一个密钥在下面那一行（如果为空），被cookie检验调用
             'cookieValidationKey' => 'f-1cwZYcAkfXPK8Tla8oVxvwDbnTDzOG',
         ],
         'cache' => [
@@ -51,6 +51,14 @@ $config = [
     ],
     'params' => $params,
     'timeZone' => 'Etc/GMT-8',      //指定时区为东八区
+    /*
+     * 'controllerMap' => [             //控制器部署，一般第三方不能掌控类名的控制器上
+     *  'controllerID' => 'app\controllers\SomeController'
+     * ],
+     *
+     * 'defaultRoute' => 'main',        //修改默认控制器
+     *
+     * */
 ];
 
 if (YII_ENV_DEV) {

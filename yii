@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 /**
- * 控制台入口脚本
+ * 控制台入口脚本，引导文件
  * Yii console bootstrap file.
  *
  * @link http://www.yiiframework.com/

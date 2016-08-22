@@ -10,7 +10,7 @@ $config = [
     'basePath' => dirname(__DIR__),     //应用根目录
     'bootstrap' => ['log'],     //引导启动组件，每次请求都会实例化
     'controllerNamespace' => 'app\commands',
-    'components' => [
+    'components' => [           //组件与其配置
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

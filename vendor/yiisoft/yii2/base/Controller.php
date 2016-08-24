@@ -335,43 +335,52 @@ class Controller extends Component implements ViewContextInterface
     }
 
     /**
-     * Renders a view and applies layout if available.
+     * Renders a view and applies layout if available.      如果有值的话，就渲染一个视图和应用一个布局
      *
-     * The view to be rendered can be specified in one of the following formats:
+     * The view to be rendered can be specified in one of the following formats:        要渲染的视图可以以下面的其中一种方式来定义
      *
-     * - path alias (e.g. "@app/views/site/index");
-     * - absolute path within application (e.g. "//site/index"): the view name starts with double slashes.
-     *   The actual view file will be looked for under the [[Application::viewPath|view path]] of the application.
-     * - absolute path within module (e.g. "/site/index"): the view name starts with a single slash.
-     *   The actual view file will be looked for under the [[Module::viewPath|view path]] of [[module]].
-     * - relative path (e.g. "index"): the actual view file will be looked for under [[viewPath]].
+     * - path alias (e.g. "@app/views/site/index");     路径别名（例如：@app/views/site/index）
+     * - absolute path within application (e.g. "//site/index"): the view name starts with double slashes.      在应用主体中的绝对路径，（例如：//site/index）：视图名称以双斜线为开始
+     *   The actual view file will be looked for under the [[Application::viewPath|view path]] of the application.      实际的视图文件会在应用主体的Application::viewPath或者view path中寻址
+     * - absolute path within module (e.g. "/site/index"): the view name starts with a single slash.    模块中的绝对路径（例如：/site/index）：视图名称以单斜线开始
+     *   The actual view file will be looked for under the [[Module::viewPath|view path]] of [[module]].    实际的视图文件会在module中的Module::viewPath或者view path变量值下寻址
+     * - relative path (e.g. "index"): the actual view file will be looked for under [[viewPath]].      相对路径（例如：index）：实际的视图文件会在viewPath变量值下寻址
      *
-     * To determine which layout should be applied, the following two steps are conducted:
+     * To determine which layout should be applied, the following two steps are conducted:  决定哪个布局会被应用，会进行下面两个步骤：
      *
-     * 1. In the first step, it determines the layout name and the context module:
+     * 1. In the first step, it determines the layout name and the context module:      第一步，确定布局名称和环境模块
      *
-     * - If [[layout]] is specified as a string, use it as the layout name and [[module]] as the context module;
+     * - If [[layout]] is specified as a string, use it as the layout name and [[module]] as the context module;    如果layout是一个字符串，将其用作布局名称，module用作环境模块
      * - If [[layout]] is null, search through all ancestor modules of this controller and find the first
      *   module whose [[Module::layout|layout]] is not null. The layout and the corresponding module
      *   are used as the layout name and the context module, respectively. If such a module is not found
      *   or the corresponding layout is not a string, it will return false, meaning no applicable layout.
      *
+     * 如果layout为空，通过搜索这个控制器的所有祖先模块，找到第一个Module::layout或者layout变量不为空的祖先模块。布局和对应的模块分别用作布局名称和环境模块。
+     * 如果没有这么一个模块，或者对应的layout不是字符串，返回false，意味着没有可以应用的布局
+     *
      * 2. In the second step, it determines the actual layout file according to the previously found layout name
      *    and context module. The layout name can be:
      *
-     * - a path alias (e.g. "@app/views/layouts/main");
+     * 第二步，根据原先找到的布局名称和环境模块确定实际的布局文件，布局名称可以是：
+     *
+     * - a path alias (e.g. "@app/views/layouts/main");     一个路径别名（例如：@app/views/layouts/main）
      * - an absolute path (e.g. "/main"): the layout name starts with a slash. The actual layout file will be
      *   looked for under the [[Application::layoutPath|layout path]] of the application;
+     * 一个绝对路径（例如：/main）：布局名称一条斜线开始。实际的布局文件会在应用主体的Application::layoutPath或者layout path变量值下寻址
      * - a relative path (e.g. "main"): the actual layout file will be looked for under the
      *   [[Module::layoutPath|layout path]] of the context module.
+     * 一个相对路径（例如：main）：实际的布局文件会在环境模块的Module::layout path或者layout path变量值下寻址
      *
      * If the layout name does not contain a file extension, it will use the default one `.php`.
      *
-     * @param string $view the view name.
-     * @param array $params the parameters (name-value pairs) that should be made available in the view.
-     * These parameters will not be available in the layout.
-     * @return string the rendering result.
-     * @throws InvalidParamException if the view file or the layout file does not exist.
+     * 如果布局名称没有包含后缀名，就使用默认的“.php”
+     *
+     * @param string $view the view name.   视图名称
+     * @param array $params the parameters (name-value pairs) that should be made available in the view.    视图中需要提供的参数（键值对）
+     * These parameters will not be available in the layout.    这些变量不会提供给布局
+     * @return string the rendering result.     渲染结果
+     * @throws InvalidParamException if the view file or the layout file does not exist.    如果视图文件和布局文件不存在，会抛出非法参数异常
      */
     public function render($view, $params = [])
     {

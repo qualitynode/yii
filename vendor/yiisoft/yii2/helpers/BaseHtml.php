@@ -15,9 +15,9 @@ use yii\web\Request;
 use yii\base\Model;
 
 /**
- * BaseHtml provides concrete implementation for [[Html]].
+ * BaseHtml provides concrete implementation for [[Html]].      BaseHtml类给Html类提供了具体的接口类
  *
- * Do not use BaseHtml. Use [[Html]] instead.
+ * Do not use BaseHtml. Use [[Html]] instead.   不要使用BaseHtml类，用Html类代替。
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0

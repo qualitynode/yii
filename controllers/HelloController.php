@@ -43,8 +43,11 @@ class HelloController extends Controller {
 //        $cookies = Yii::$app->request->cookies;     //请求组件中的cookie组件
 //        echo $cookies->getValue('user', 'cuiyi');   //获取ID为’user‘的cookie值，如果不存在，则默认使用'cuiyi'
 
+//        return $this->render('index');      //渲染视图
 
-
+        $data = array();
+        $data['name'] = 'cuijian<script>alert(3);</script>';
+        return $this->render('index', $data);       //通过数组的方式传值到视图
 
 
 
